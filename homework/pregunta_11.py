@@ -14,5 +14,20 @@ def pregunta_11():
     Rta/
     {'a': 122, 'b': 49, 'c': 91, 'd': 73, 'e': 86, 'f': 134, 'g': 35}
 
-
     """
+    sumas_por_letra = {}
+    
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            
+            valor_col2 = int(columns[1])
+            letras_col4 = columns[3].split(',')
+            
+            for letra in letras_col4:
+                if letra in sumas_por_letra:
+                    sumas_por_letra[letra] += valor_col2
+                else:
+                    sumas_por_letra[letra] = valor_col2
+    
+    return dict(sorted(sumas_por_letra.items())) 
